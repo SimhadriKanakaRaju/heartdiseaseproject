@@ -43,10 +43,14 @@
             margin-left: 70px;
             margin-bottom: 20px;
         }
-        .Ecg,.Rate,.exercise,.dep,.seg,.Vessels,.sca,.Sugar,.chol,.rbp,.chest,.sex,.age{
+        .pred,.prec,.prob,.Ecg,.Rate,.exercise,.dep,.seg,.Vessels,.sca,.Sugar,.chol,.rbp,.chest,.sex,.age{
             font-style: bold;
             font-size: 50px;
             margin-left:30px;
+        }
+        .preca{
+            font-size: 40px;
+            margin-left: 70px;
         }
         .submitkey{
           text-align: center;
@@ -166,16 +170,16 @@
       </div>
       {% if prediction_text %}
 
-<h1>{{ prediction_text }}</h1>
+<h1 class="pred">{{ prediction_text }}</h1>
 
-<h1>
+<h1 class="prob">
     Probability of Heart Disease:
     {{ "%.2f"|format(probability) }}%
 </h1>
 
-<h1>Precautions</h1>
+<h1 class="prec">Precautions</h1>
 
-<ul>
+<ul class="preca">
     {% for precaution in precautions %}
         <li>{{ precaution }}</li>
     {% endfor %}
