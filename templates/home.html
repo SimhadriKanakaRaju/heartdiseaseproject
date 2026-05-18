@@ -1,0 +1,186 @@
+<!DOCKTYPE.html>
+  <html>
+    <title>Heart disease predictor</title>
+    <head>
+      <style>
+        .title{
+          text-align: center;
+          font-style: bold;
+          font-size: 125px;
+          margin-bottom: 90px;
+          margin-top: 90px;
+          background-color: #ff0000;
+          border: none;
+          height: 300px;
+          width: 1650px;
+          padding-top:0px;
+          padding-bottom: 0px;
+        }
+        .details{
+          color: #ffffff;
+          border-color: #ff0000;
+          background-color: #ff0000;
+          font-style: bold;
+          font-size: 50px;
+          height: 100px;
+          width: 1650px;
+            margin-top: 30px;
+          margin-bottom: 30px;
+          padding-top: 30px;
+        }
+        .asymptomatic,.yes,.no,.down,.up,.flat,.fixed,.normal,.reverse,.other,.non,.atypical,.typical,.sugar1,.sugar2,.norm,.ST,.leftv,.gender,.vessel{
+            font-size: 40px;
+            margin-left: 70px;
+            display: block;
+        }
+        .enter,.chol2,.ratevalue,.depvalue,.Pain{
+            font-size: 40px;
+            background-color: white;
+            text-align: left;
+            border-color: #000000;
+            height: 60px;
+            width: 700px;
+            margin-left: 70px;
+            margin-bottom: 20px;
+        }
+        .Ecg,.Rate,.exercise,.dep,.seg,.Vessels,.sca,.Sugar,.chol,.rbp,.chest,.sex,.age{
+            font-style: bold;
+            font-size: 50px;
+            margin-left:30px;
+        }
+        .submitkey{
+          text-align: center;
+          color: #ffffff;
+          border-color: #ff0000;
+          background-color: #ff0000;
+          font-style: bold;
+          font-size: 50px;
+          height: 150px;
+          width: 1000px;
+          margin-top: 30px;
+          margin-bottom: 30px;
+          padding-top: 30px;
+          padding-bottom: 30px;
+          margin-left: 300px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="login">
+        <h1 class="title">Heart disease predictor system</h1>
+        <h2 class="details">Patient details</h2>
+        <form action="{{url_for('predict_api')}}" method="post">
+          <p class="age"> 1. Enter your age</p>
+          <input class="Pain" id="age" name="age" min="1" max="120" type="number" placeholder=" e.g. 52">
+          <p class="sex">2. Gender</p>
+          <label class="gender"> 
+            <input type="radio" name="sex" value="0"> female
+            <input type="radio" name="sex" value="1"> male
+          </label>
+          <p class="chest">3. Chest_pain</p>
+          <label class="typical"> 
+            <input type="radio" name="cp" value="0"> Typical anginal
+          </label>
+          <label class="atypical">
+            <input type="radio" name="cp" value="1"> Atypical anginal
+          </label>
+          <label class="non">
+            <input type="radio" name="cp" value="2"> Non anginal pain
+          </label>
+          <label class="asymptomatic">
+            <input type="radio" name="cp" value="3"> Asymptomatic
+          </label>
+          <p class="rbp">4. Enter the resting blood pressure value</p>
+          <input class="enter" type="number" name="trestbps" id="trestbps" placeholder=" e.g. 120">
+          <p class="chol">5. Cholestorel level</p>
+          <input class="chol2" type="number" name="chol" id="chol" placeholder="e.g. 200">
+          <p class="Sugar">6. Sugar_Level</p>
+          <label class="sugar1">
+            <input type="radio" name="fbs" value="1"> &gt;120mg/l
+          </label>
+          <label class="sugar2">
+            <input type="radio" name="fbs" value="0"> &le;120mg/l
+          </label>
+          <p class="Ecg">7. Resting ECG</p>
+          <label class="norm">
+            <input type="radio" name="restecg" value="0">Normal
+          </label>
+          <label class="ST">
+            <input type="radio" name="restecg" value="1">ST-abnormality
+          </label>
+          <label class="leftv">
+            <input type="radio" name="restecg" value="2">Left Ventricular hypertrophy
+          </label>
+          <p class="Rate">8. Maximum Heart Rate</p>
+          <input class="ratevalue" type="number" name="thalach"id="thalach" placeholder=" e.g. 150">
+          <p class="exercise">9. Have Exercised-induced angina &quest;</p>
+          <label class="yes">
+            <input type="radio" name="exang" value="1">Yes
+          </label>
+          <label class="no">
+            <input type="radio" name="exang" value="0">No
+          </label>
+          <p class="dep">10. Depression Value</p>
+          <input class="depvalue" type="number" name="oldpeak" id="oldpeak" placeholder=" e.g. 1.5">
+          <p class="seg">11. Segment slope</p>
+          <label class="down">
+            <input type="radio" name="slope" value="0">Downsloping
+          </label>
+          <label class="flat">
+            <input type="radio" name="slope" value="1">Flat
+          </label>
+          <label class="up">
+            <input type="radio" name="slope" value="2">Upsloping
+          </label>
+          <p class="Vessels">12. Vessels blocked</p>
+          <label class="vessel">
+            <input type="radio" name="ca" value="0">0
+          </label>
+          <label class="vessel">
+            <input type="radio" name="ca" value="1">1
+          </label>
+          <label class="vessel">
+            <input type="radio" name="ca" value="2">2
+          </label>
+          <label class="vessel">
+            <input type="radio" name="ca" value="3">3
+          </label>
+          <label class="vessel">
+            <input type="radio" name="ca" value="4">4
+          </label>
+          <p class="sca">13. Thalamassia Scan Result</p>
+          <label class="normal">
+            <input type="radio" name="thal" value="0">Normal
+          </label>
+          <label class="fixed">
+            <input type="radio" name="thal" value="1">Fixed defect
+          </label>
+          <label class="reverse">
+            <input type="radio" name="thal" value="2">Reversible defect
+          </label>
+          <label class="other">
+            <input type="radio" name="thal" value="3">Others
+          </label>
+          <button class="submitkey" type="submit">PREDICT</button>
+        </form>
+      </div>
+      {% if prediction_text %}
+
+<h1>{{ prediction_text }}</h1>
+
+<h1>
+    Probability of Heart Disease:
+    {{ "%.2f"|format(probability) }}%
+</h1>
+
+<h1>Precautions</h1>
+
+<ul>
+    {% for precaution in precautions %}
+        <li>{{ precaution }}</li>
+    {% endfor %}
+</ul>
+
+{% endif %}
+      </body>
+  </html>
